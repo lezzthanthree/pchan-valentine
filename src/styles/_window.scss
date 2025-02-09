@@ -1,0 +1,62 @@
+@import "colors";
+
+.window__background {
+    display: flex;
+    flex-direction: column;
+    background-color: $cyan;
+    border: 2px solid $purple;
+    padding: 4px 4px 0px 4px;
+    box-sizing: border-box;
+}
+
+.window__title_icon {
+    background-color: $purple;
+    height: 16px;
+    width: 16px;
+    margin: 5px;
+}
+
+.window__title_bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: $pink;
+    border: 2px solid $purple;
+    width: 100%;
+    min-height: 30px;
+    box-sizing: border-box;
+    color: $purple;
+    line-height: 0.5em;
+    font-size: 16px;
+    font-family: "DinkieBitmap 9px", monospace;
+}
+
+.window__foreground {
+    background-color: $white;
+    border: 2px solid $purple;
+    margin: 4px 0;
+    box-sizing: border-box;
+}
+
+.window__bottom {
+    display: flex;
+    flex-direction: row;
+}
+
+.window__long_pink_thingy {
+    height: 9px;
+    width: 36px;
+    background-color: $dark-pink;
+    border: solid 2px $purple;
+    border-bottom: 0px;
+    box-sizing: border-box;
+}
+
+.window__small_square_thingy {
+    height: 7px;
+    width: 7px;
+    background-color: $cyan;
+    border: solid 2px $purple;
+    box-sizing: border-box;
+    margin-left: 2px;
+}

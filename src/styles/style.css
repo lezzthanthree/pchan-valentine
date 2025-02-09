@@ -1,0 +1,95 @@
+@font-face {
+  font-family: "DinkieBitmap 7px";
+  src: url("/fonts/DinkieBitmap-7px.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "DinkieBitmap 9px";
+  src: url("/fonts/DinkieBitmap-9px.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Zpix";
+  src: url("/fonts/zpix.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+/* Add more @font-face rules as needed for other fonts */
+* {
+  padding: 0;
+  margin: 0;
+  line-height: 1em;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100dvh;
+  font-family: "zpix", monospace;
+}
+
+.window__background {
+  display: flex;
+  flex-direction: column;
+  background-color: #90f4e4;
+  border: 2px solid #4d23cf;
+  padding: 4px 4px 0px 4px;
+  box-sizing: border-box;
+}
+
+.window__title_icon {
+  background-color: #4d23cf;
+  height: 16px;
+  width: 16px;
+  margin: 5px;
+}
+
+.window__title_bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #f0d1f1;
+  border: 2px solid #4d23cf;
+  width: 100%;
+  min-height: 30px;
+  box-sizing: border-box;
+  color: #4d23cf;
+  line-height: 0.5em;
+  font-size: 16px;
+  font-family: "DinkieBitmap 9px", monospace;
+}
+
+.window__foreground {
+  background-color: #fff8ff;
+  border: 2px solid #4d23cf;
+  margin: 4px 0;
+  box-sizing: border-box;
+}
+
+.window__bottom {
+  display: flex;
+  flex-direction: row;
+}
+
+.window__long_pink_thingy {
+  height: 9px;
+  width: 36px;
+  background-color: #e6a2e4;
+  border: solid 2px #4d23cf;
+  border-bottom: 0px;
+  box-sizing: border-box;
+}
+
+.window__small_square_thingy {
+  height: 7px;
+  width: 7px;
+  background-color: #90f4e4;
+  border: solid 2px #4d23cf;
+  box-sizing: border-box;
+  margin-left: 2px;
+}
+
+/*# sourceMappingURL=style.css.map */
