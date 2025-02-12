@@ -21,6 +21,7 @@ $jine-reply: #4aee53;
 
 .jine__message_div--pien {
     display: flex;
+    align-items: center;
 }
 
 .jine__message_div--ame {
@@ -37,6 +38,7 @@ $jine-reply: #4aee53;
 
 .jine__message--pien {
     background-color: $jine-blue;
+    
 }
 
 .jine__message--ame {
@@ -57,6 +59,11 @@ $jine-reply: #4aee53;
     padding: 20px;
     opacity: 0;
     animation: fadeIn 0.3s ease-out forwards;
+}
+
+.jine__message_icon {
+    width: 40px;
+    height: 40px;
 }
 
 @keyframes fadeIn {

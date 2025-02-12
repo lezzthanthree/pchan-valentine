@@ -4,6 +4,7 @@ type Message = {
     id: number;
     text: string;
     sender: "pien" | "ame";
+    icon?: "beg" | "ok" | "pien" | "love" | "w" | "ded";
 };
 
 type ReplyOption = {
@@ -14,13 +15,18 @@ type ReplyOption = {
 };
 
 const pienMessages: Message[] = [
-    { id: 1, text: "will you be my valentine?", sender: "pien" },
-    { id: 2, text: "pien", sender: "pien" },
-    { id: 3, text: "YAY!", sender: "pien" },
-    { id: 4, text: "EHHH?!", sender: "pien" },
-    { id: 5, text: "i'm ded...", sender: "pien" },
-    { id: 6, text: "e-ecchi", sender: "pien" },
-    { id: 7, text: "I'M BRINGING YOU TO MCDONALD'S :>", sender: "pien" },
+    { id: 1, text: "will you be my valentine?", sender: "pien", icon: "beg" },
+    { id: 2, text: "pien", sender: "pien", icon: "pien" },
+    { id: 3, text: "YAY!", sender: "pien", icon: "love" },
+    { id: 4, text: "EHHH?!", sender: "pien", icon: "beg" },
+    { id: 5, text: "i'm ded...", sender: "pien", icon: "ded" },
+    { id: 6, text: "e-ecchi", sender: "pien", icon: "ok" },
+    {
+        id: 7,
+        text: "I'M BRINGING YOU TO MCDONALD'S :>",
+        sender: "pien",
+        icon: "w",
+    },
 ];
 
 const replyOptions: Record<number, ReplyOption[]> = {
@@ -57,6 +63,7 @@ export default function JINE() {
                         id: 1,
                         text: "Will you be my Valentine?",
                         sender: "pien",
+                        icon: "beg",
                     },
                 ]);
                 setCurrentMessageId(1);
@@ -70,7 +77,7 @@ export default function JINE() {
         const userReply: Message = {
             id: chat.length + 1,
             text: reply.text,
-            sender: "ame",
+            sender: "ame",            
         };
         const nextMessage = pienMessages.find((msg) => msg.id === reply.next);
         if (!nextMessage) return;
@@ -97,6 +104,9 @@ export default function JINE() {
                         key={msg.id}
                         className={`jine__message_div--${msg.sender}`}
                     >
+                        {msg.icon && (
+                            <img className="jine__message_icon" src={`/images/icon/${msg.icon}.png`} />
+                        )}
                         <div
                             className={`jine__message jine__message--${msg.sender}`}
                         >
