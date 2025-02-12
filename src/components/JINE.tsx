@@ -95,7 +95,7 @@ export default function JINE({
 
         if (nextMessage.ending) {
             await setTimeout(() => {
-                setEndingNumber(nextMessage.ending);
+                setEndingNumber(nextMessage.ending as number);
             }, 6000);
         }
     };
