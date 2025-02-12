@@ -5,6 +5,7 @@ type Message = {
     text: string;
     sender: "pien" | "ame";
     icon?: "beg" | "ok" | "pien" | "love" | "w" | "ded";
+    ending?: number;
 };
 
 type ReplyOption = {
@@ -18,14 +19,15 @@ const pienMessages: Message[] = [
     { id: 1, text: "will you be my valentine?", sender: "pien", icon: "beg" },
     { id: 2, text: "pien", sender: "pien", icon: "pien" },
     { id: 3, text: "YAY!", sender: "pien", icon: "love" },
-    { id: 4, text: "EHHH?!", sender: "pien", icon: "beg" },
-    { id: 5, text: "i'm ded...", sender: "pien", icon: "ded" },
-    { id: 6, text: "e-ecchi", sender: "pien", icon: "ok" },
+    { id: 4, text: "EHHH?!", sender: "pien", icon: "beg", ending: 1 },
+    { id: 5, text: "okay.", sender: "pien", icon: "ded", ending: 2 },
+    { id: 6, text: "e-ecchi", sender: "pien", icon: "ok", ending: 3 },
     {
         id: 7,
         text: "I'M BRINGING YOU TO MCDONALD'S :>",
         sender: "pien",
         icon: "w",
+        ending: 4,
     },
 ];
 
@@ -37,7 +39,7 @@ const replyOptions: Record<number, ReplyOption[]> = {
     2: [
         {
             id: 1,
-            text: "i'm sorry, p-chan, but I'LL take you to valentine's",
+            text: "i'm sorry, p-chan, but YOU'LL be my valentine's",
             next: 4,
             sender: "ame",
         },
@@ -49,7 +51,11 @@ const replyOptions: Record<number, ReplyOption[]> = {
     ],
 };
 
-export default function JINE() {
+export default function JINE({
+    setEndingNumber,
+}: {
+    setEndingNumber: (ending: number) => void;
+}) {
     const [chat, setChat] = useState<Message[]>([]);
     const [currentMessageId, setCurrentMessageId] = useState<number>(0);
     const jineSend = useRef(new Audio("/audio/jine_send.wav"));
@@ -59,12 +65,7 @@ export default function JINE() {
         const wait = async () => {
             setTimeout(() => {
                 setChat([
-                    {
-                        id: 1,
-                        text: "Will you be my Valentine?",
-                        sender: "pien",
-                        icon: "beg",
-                    },
+                    pienMessages[0]
                 ]);
                 setCurrentMessageId(1);
                 jineReceive.current.play();
@@ -73,11 +74,11 @@ export default function JINE() {
         wait();
     }, []);
 
-    const handleReply = (reply: ReplyOption) => {
+    const handleReply = async (reply: ReplyOption) => {
         const userReply: Message = {
             id: chat.length + 1,
             text: reply.text,
-            sender: "ame",            
+            sender: "ame",
         };
         const nextMessage = pienMessages.find((msg) => msg.id === reply.next);
         if (!nextMessage) return;
@@ -86,11 +87,17 @@ export default function JINE() {
         setCurrentMessageId(0);
         jineSend.current.play();
 
-        setTimeout(() => {
+        await setTimeout(() => {
             setChat((prevChat) => [...prevChat, nextMessage]);
             setCurrentMessageId(nextMessage.id);
             jineReceive.current.play();
         }, 3000); // 3-second delay before showing the next message
+
+        if (nextMessage.ending) {
+            await setTimeout(() => {
+                setEndingNumber(nextMessage.ending);
+            }, 6000);
+        }
     };
 
     return (
@@ -105,7 +112,10 @@ export default function JINE() {
                         className={`jine__message_div--${msg.sender}`}
                     >
                         {msg.icon && (
-                            <img className="jine__message_icon" src={`/images/icon/${msg.icon}.png`} />
+                            <img
+                                className="jine__message_icon"
+                                src={`/images/icon/${msg.icon}.png`}
+                            />
                         )}
                         <div
                             className={`jine__message jine__message--${msg.sender}`}
