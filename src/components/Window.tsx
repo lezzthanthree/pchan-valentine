@@ -1,9 +1,17 @@
+import { useEffect, useRef } from "react";
+
 interface WindowProps {
     title: string;
     children?: React.ReactNode;
 }
 
 export const Window = (prop: WindowProps) => {
+    const windowOpen = useRef(new Audio("/audio/window.wav"));
+
+    useEffect(() => {
+        windowOpen.current.play()
+    })
+    
     const { title, children } = prop;
 
     return (
