@@ -39,7 +39,7 @@ const replyOptions: Record<number, ReplyOption[]> = {
     2: [
         {
             id: 1,
-            text: "i'm sorry, p-chan, but YOU'LL be my valentine's",
+            text: "i'm sorry, p-chan, but YOU'LL be my valentine",
             next: 4,
             sender: "ame",
         },
@@ -64,9 +64,7 @@ export default function JINE({
     useEffect(() => {
         const wait = async () => {
             setTimeout(() => {
-                setChat([
-                    pienMessages[0]
-                ]);
+                setChat([pienMessages[0]]);
                 setCurrentMessageId(1);
                 jineReceive.current.play();
             }, 1000);
