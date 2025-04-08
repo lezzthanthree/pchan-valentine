@@ -56,6 +56,7 @@ export const Ending = (prop: EndingProp) => {
                 {endingNumber === 1 && <h1>Happy Valentine's Day!</h1>}
                 <p>{possibleEndings[endingNumber].quote}</p>
                 <p>Ending #{endingNumber}</p>
+                {endingNumber === 1 && <a href="https://x.com/ylxU_ka/status/1872947158246437304"><p>Art by @ylxU_ka</p></a>}
             </div>
         </div>
     );
